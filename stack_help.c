@@ -1,17 +1,18 @@
 #include "monty.h"
 
+//This will most likely be removed as this is the purpose of pall
 /**
  * print_stack - Prints every node of a stack
  * @h: The top of the stack
  */
-void print_stack(const stack_t *h)
-{
-	while (h)
-	{
-		printf("%d\n", h->n);
-		h = h->next;
-	}
-}
+//void print_stack(const stack_t *h)
+//{
+//	while (h)
+//	{
+//		printf("%d\n", h->n);
+//		h = h->next;
+//	}
+//}
 
 /**
  * stack_len - Counts the number of nodes in a stack
