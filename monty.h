@@ -35,9 +35,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* stack_help.c */
-size_t print_stack(const stack_t *h);
-size_t stack_len(const stack_t *h);
+/* op_print_funcs.c */
+void op_pall(stack_t *head, unsigned int line_num);
 
 /* op_math_funcs.c */
 void op_add(stack_t *head, unsigned int line_num);
@@ -45,5 +44,9 @@ void op_sub(stack_t *head, unsigned int line_num);
 void op_mul(stack_t *head, unsigned int line_num);
 void op_div(stack_t *head, unsigned int line_num);
 void op_mod(stack_t *head, unsigned int line_num);
+
+/* stack_help.c */
+//size_t print_stack(const stack_t *h); <- currently unnecessary. pall function
+size_t stack_len(const stack_t *h);
 
 #endif
