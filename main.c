@@ -9,42 +9,31 @@
  */
 int main(int argc, char *argv[])
 {
-	FILE *fin = fopen(argv[1],"r");
-	char *str_buf = NULL;
-    size_t line_count = 0;
-    size_t str_buf_len = 0;
-    //ssize_t str_len = 0;
+	FILE *fin = fopen(argv[1], "r");
+	char *str = NULL, *opcode_array[2];
+	const char delim[4] = " \t\n";
+	size_t str_len = 0, line_count = 0;
 
-	if (argc != 2)
+	if (argc != 2) /* Check if amount of arguments is correct */
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if (fin == NULL)
+	if (fin == NULL) /* If file was able to be opened */
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	//str_len = getline(&str_buf, &str_buf_len, fin);
-
-    //while (str_len >= 0)
-    //{
-    //    line_count++;
-    //   printf("Line number: %d, Line contents: %s\n", str_buf_len, str_buf);
-    //    str_len = getline(&str_buf, &str_buf_len, fin);
-    //}
-
-	while(getline(&str_buf, &str_buf_len, fin) != -1)
+	while (getline(&str, &str_len, fin) != -1) /*Read each file line */
 	{
-        line_count++;
-		printf("This is the line: \"%s\".\n", str_buf);
+		line_count++;
+		opcode_array[0] = strtok(str, delim); /* The opcode */
+		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
 	}
-
-	printf("The argument count amount was 2 and the file \"%s\" could be opened.\n", argv[1]);
 
 	fclose(fin);
 
-	return 0;
+	return (0);
 }
