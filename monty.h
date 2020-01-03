@@ -36,13 +36,14 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack_help.c */
-size_t stack_len(const stack_t *h)
+size_t print_stack(const stack_t *h);
+size_t stack_len(const stack_t *h);
 
 /* op_math_funcs.c */
-void op_add(stack_t *head);
-void op_sub(stack_t *head);
-void op_mul(stack_t *head);
-void op_div(stack_t *head);
-void op_mod(stack_t *head);
+void op_add(stack_t *head, unsigned int line_num);
+void op_sub(stack_t *head, unsigned int line_num);
+void op_mul(stack_t *head, unsigned int line_num);
+void op_div(stack_t *head, unsigned int line_num);
+void op_mod(stack_t *head, unsigned int line_num);
 
 #endif
