@@ -27,11 +27,29 @@ void (*get_opcode_func(char *op))(stack_t **, unsigned int)
 	};
 	size_t i = 0;
 
-	while (opcodes[i].opcode != NULL && (strcmp(op, "nop") != 0))
+	if (strcmp(op, "nop") == 0)
+		donot = 1;
+	else if (strcmp(op, "stack") == 0)
 	{
-		if (strcmp(opcodes[i].opcode, op) == 0)
-			return (opcodes[i].f);
-		i++;
+		donot = 1;
+		sorq = 0;
+	}
+	else if (strcmp(op, "queue") == 0)
+	{
+		donot = 1;
+		sorq = 1;
+	}
+	else
+	{
+		while (opcodes[i].opcode != NULL)
+		{
+			if (strcmp(opcodes[i].opcode, op) == 0)
+			{
+				donot = 0;
+				return (opcodes[i].f);
+			}
+			i++;
+		}
 	}
 	return (NULL);
 }
