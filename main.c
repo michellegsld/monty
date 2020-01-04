@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 			{
 				fprintf(stderr, "L%ld: unknown instruction %s\n", lc, opcode_array[0]);
 				exit(EXIT_FAILURE);
+			}
 			else
 				func(&head, lc);
 		}
