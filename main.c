@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	fclose(fin); /* Close file */
-	free(str);vfdsv
+	free(str);
 	free_stack(head);
 	return (0);
 }
