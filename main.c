@@ -36,12 +36,12 @@ int main(int argc, char *argv[])
 		if (opcode_array[0] != NULL && opcode_array[0][0] != '#')
 		{
 			func = get_opcode_func(opcode_array[0]);
-			if (func == NULL)
+			if (func == NULL && (strcmp(opcode_array[0], "nop") != 0))
 			{
 				fprintf(stderr, "L%ld: unknown instruction %s\n", lc, opcode_array[0]);
 				exit(EXIT_FAILURE);
 			}
-			else
+			else if (strcmp(opcode_array[0], "nop") != 0)
 				func(&head, lc);
 		}
 	}
