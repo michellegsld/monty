@@ -61,6 +61,10 @@ void op_mul(stack_t **head, unsigned int line_num);
 void op_div(stack_t **head, unsigned int line_num);
 void op_mod(stack_t **head, unsigned int line_num);
 
+/* op_rot_funcs.c */
+void op_rotl(stack_t **head, unsigned int line_num);
+void op_rotr(stack_t **head, unsigned int line_num);
+
 /* stack_help.c */
 void free_stack(stack_t *head);
 size_t stack_len(stack_t *h);
