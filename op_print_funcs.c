@@ -26,7 +26,7 @@ void op_pint(stack_t **head, unsigned int line_num)
 	if (*head)
 		printf("%d\n", (*head)->n);
 	else
-		err_mngr(1, line_num, NULL);
+		err_mngr(1, line_num, "pint");
 }
 
 /**
@@ -39,12 +39,12 @@ void op_pchar(stack_t **head, unsigned int line_num)
 	int ch = (*head)->n;
 
 	if (*head == NULL)
-		err_mngr(6, line_num, NULL);
+		err_mngr(1, line_num, "pchar");
 
 	if (ch >= 0 && ch <= 127)
 		putchar(ch);
 	else
-		err_mngr(7, line_num, NULL);
+		err_mngr(6, line_num, NULL);
 
 	putchar('\n');
 }
