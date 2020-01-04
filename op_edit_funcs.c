@@ -18,7 +18,7 @@ void op_push(stack_t **head, unsigned int line_num)
 		err_mngr(0, line_num, NULL);
 	while (i < strlen(push_tok))
 	{
-		if (!isdigit(push_tok[i]))
+		if (!isdigit(push_tok[i]) && push_tok[0] != '-')
 			err_mngr(0, line_num, NULL);
 		i++;
 	}
