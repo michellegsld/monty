@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	while (getline(&str, &str_len, fin) != -1) /*Read each file line */
 	{
-		lc++;fsdafsddsfa
+		lc++;
 		opcode_array[0] = strtok(str, delim); /* The opcode */
 		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
 		push_tok = opcode_array[1]; /* The extern variable pointer */
