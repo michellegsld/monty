@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
 		push_tok = opcode_array[1]; /* The extern variable pointer */
 		if (opcode_array[0] != NULL && opcode_array[0][0] != '#')
-		{afsdfs
+		{
 			func = get_opcode_func(opcode_array[0]);
 			if (func == NULL && donot == 0)
 				err_mngr(10, lc, opcode_array[0]);
