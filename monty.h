@@ -45,9 +45,14 @@ void (*get_opcode_func(char *op))(stack_t **, unsigned int);
 
 /* op_edit_funcs.c */
 void op_push(stack_t **head, unsigned int line_num);
+void op_pop(stack_t **head, unsigned int line_num);
+void op_swap(stack_t **head, unsigned int line_num);
 
 /* op_print_funcs.c */
 void op_pall(stack_t **head, unsigned int line_num);
+void op_pint(stack_t **head, unsigned int line_num);
+void op_pchar(stack_t **head, unsigned int line_num);
+void op_pstr(stack_t **head, unsigned int line_num);
 
 /* op_math_funcs.c */
 void op_add(stack_t **head, unsigned int line_num);
