@@ -35,15 +35,25 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* Extern Variable */
+extern char *push_tok;
+char *push_tok;
+
+/* get_opcode_func.c */
+void (*get_opcode_func(char *op))(stack_t **, unsigned int);
+
+/* op_edit_funcs.c */
+void op_push(stack_t **head, unsigned int line_num);
+
 /* op_print_funcs.c */
-void op_pall(stack_t *head, unsigned int line_num);
+void op_pall(stack_t **head, unsigned int line_num);
 
 /* op_math_funcs.c */
-void op_add(stack_t *head, unsigned int line_num);
-void op_sub(stack_t *head, unsigned int line_num);
-void op_mul(stack_t *head, unsigned int line_num);
-void op_div(stack_t *head, unsigned int line_num);
-void op_mod(stack_t *head, unsigned int line_num);
+void op_add(stack_t **head, unsigned int line_num);
+void op_sub(stack_t **head, unsigned int line_num);
+void op_mul(stack_t **head, unsigned int line_num);
+void op_div(stack_t **head, unsigned int line_num);
+void op_mod(stack_t **head, unsigned int line_num);
 
 /* stack_help.c */
 //size_t print_stack(const stack_t *h); <- currently unnecessary. pall function
