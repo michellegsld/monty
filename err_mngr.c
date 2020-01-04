@@ -8,13 +8,14 @@
  */
 void err_mngr(int flag, unsigned int line_num, char *str)
 {
+	free_stack(head);
 	switch (flag)
 	{
 		case (0):	/* push fail */
 			fprintf(stderr, "L%d: usage: push integer\n", line_num);
 			break;
-		case (1):	/* pint fail */
-			fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
+		case (1):	/* , stack empty fail */
+			fprintf(stderr, "L%d: can't %s, stack empty\n", line_num, str);
 			break;
 		case (2):	/* pop fail */
 			fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
@@ -28,23 +29,22 @@ void err_mngr(int flag, unsigned int line_num, char *str)
 		case (5):	/* malloc fail */
 			fprintf(stderr, "Error: malloc failed\n");
 			break;
-		case (6):	/* pchar stack fail */
-			fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
-			break;
-		case (7):	/* pchar range fail */
+		case (6):	/* pchar range fail */
 			fprintf(stderr, "L%d: can't pchar, value out of range\n", line_num);
 			break;
-		case (8):	/* number of arguments fail */
+		case (7):	/* number of arguments fail */
 			fprintf(stderr, "USAGE: monty file\n");
 			break;
-		case(9): /* File open fail */
+		case(8): /* File open fail */
 			fprintf(stderr, "Error: Can't open file %s\n", str);
 			break;
-		case(10):
+		case(9):
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, str);
 			break;
 		default:
 			break;
 	}
+	free(get_str);
+	fclose(fin);
 	exit(EXIT_FAILURE);
 }
