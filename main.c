@@ -9,9 +9,11 @@
  */
 int main(int argc, char *argv[])
 {
-	FILE *fin = fopen(argv[1], "r");
+	stack_t *head = NULL;
+	void (*func)(stack_t **stack, unsigned int line_number);
+	FILE *fin = fopen(argv[1], "r"); /* Open file to read */
 	char *str = NULL, *opcode_array[2];
-	const char delim[4] = " \t\n";
+	const char delim[3] = " \t\n";
 	size_t str_len = 0, line_count = 0;
 
 	if (argc != 2) /* Check if amount of arguments is correct */
@@ -31,9 +33,18 @@ int main(int argc, char *argv[])
 		line_count++;
 		opcode_array[0] = strtok(str, delim); /* The opcode */
 		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
+		push_tok = opcode_array[1]; /* The extern variable pointer */
+		func = get_opcode_func(opcode_array[0]);
+		if (func == NULL)
+		{
+			fprintf(stderr, "L%ld: unknown instruction %s\n", line_count, opcode_array[0]);
+			exit(EXIT_FAILURE);
+		}
+		else
+			func(&head, line_count);
 	}
 
-	fclose(fin);
-
+	fclose(fin); /* Close file */
+	free(str);
 	return (0);
 }
