@@ -19,6 +19,10 @@ void (*get_opcode_func(char *op))(stack_t **, unsigned int)
 		{"mul", op_mul},
 		{"div", op_div},
 		{"mod", op_mod},
+		{"pchar", op_pchar},
+		{"pstr", op_pstr},
+		{"rotl", op_rotl},
+		{"rotr", op_rotr},
 		{NULL, NULL}
 	};
 	size_t i = 0;
