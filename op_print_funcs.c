@@ -5,12 +5,14 @@
  * @head: The top of the stack
  * @line_num: The current line number within the file
  */
-void op_pall(stack_t *head, unsigned int line_num)
+void op_pall(stack_t **head, unsigned int __attribute__((unused)) line_num)
 {
-	while (head)
+	stack_t *current = *head;
+
+	while (current)
 	{
-		printf("%d\n", head->n);
-		head = head->next;
+		printf("%d\n", (current)->n);
+		(current) = (current)->next;
 	}
 }
 
