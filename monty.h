@@ -43,7 +43,7 @@ extern int sorq;	/* Checks if complete a stack or queue */
 int sorq;
 extern int donot;	/* A flag if the opcode sent in should do nothing */
 int donot;
-fjhkdsa
+
 /* get_opcode_func.c */
 void (*get_opcode_func(char *op))(stack_t **, unsigned int);
 
