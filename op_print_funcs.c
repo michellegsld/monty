@@ -26,10 +26,7 @@ void op_pint(stack_t **head, unsigned int line_num)
 	if (*head)
 		printf("%d\n", (*head)->n);
 	else
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(1, line_num, NULL);
 }
 
 /**
@@ -42,18 +39,13 @@ void op_pchar(stack_t **head, unsigned int line_num)
 	int ch = (*head)->n;
 
 	if (*head == NULL)
-	{
-		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(6, line_num, NULL);
 
 	if (ch >= 0 && ch <= 127)
 		putchar(ch);
 	else
-	{
-		fprintf(stderr, "L%d: can't pchar, value out of range", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(7, line_num, NULL);
+
 	putchar('\n');
 }
 
