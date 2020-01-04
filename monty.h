@@ -37,8 +37,12 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Extern Variable */
-extern char *push_tok;
+extern char *push_tok;	/* Contains arg for push */
 char *push_tok;
+extern int sorq;	/* Checks if complete a stack or queue */
+int sorq;
+extern int donot;	/* A flag if the opcode sent in should do nothing */
+int donot;
 
 /* get_opcode_func.c */
 void (*get_opcode_func(char *op))(stack_t **, unsigned int);
@@ -64,6 +68,9 @@ void op_mod(stack_t **head, unsigned int line_num);
 /* op_rot_funcs.c */
 void op_rotl(stack_t **head, unsigned int line_num);
 void op_rotr(stack_t **head, unsigned int line_num);
+
+/* err_mngr.c */
+void err_mngr(int flag, unsigned int line_num, char *str);
 
 /* stack_help.c */
 void free_stack(stack_t *head);

@@ -8,17 +8,15 @@
 void op_add(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(3, line_num, "add");
+
 	(*head)->next->n = (*head)->next->n + (*head)->n;
 	*head = (*head)->next;
 	free((*head)->prev);
 	(*head)->prev = NULL;
 }
 
- /**
+/**
  * op_sub - Subtracts the top element of the stack from the 2nd one
  * @head: The top of the stack
  * @line_num: The current line number within the file
@@ -26,17 +24,15 @@ void op_add(stack_t **head, unsigned int line_num)
 void op_sub(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(3, line_num, "sub");
+
 	(*head)->next->n = (*head)->next->n - (*head)->n;
 	*head = (*head)->next;
 	free((*head)->prev);
 	(*head)->prev = NULL;
 }
 
- /**
+/**
  * op_mul - Multiplies the top 2 elements of the stack
  * @head: The top of the stack
  * @line_num: The current line number within the file
@@ -44,10 +40,7 @@ void op_sub(stack_t **head, unsigned int line_num)
 void op_mul(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(3, line_num, "mul");
 
 	(*head)->next->n = (*head)->next->n * (*head)->n;
 	*head = (*head)->next;
@@ -55,7 +48,7 @@ void op_mul(stack_t **head, unsigned int line_num)
 	(*head)->prev = NULL;
 }
 
- /**
+/**
  * op_div - Divides the 2nd element of the stack by the first
  * @head: The top of the stack
  * @line_num: The current line number within the file
@@ -63,15 +56,11 @@ void op_mul(stack_t **head, unsigned int line_num)
 void op_div(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(3, line_num, "div");
+
 	if ((*head)->n == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(4, line_num, NULL);
+
 	(*head)->next->n = (*head)->next->n / (*head)->n;
 	*head = (*head)->next;
 	free((*head)->prev);
@@ -86,15 +75,11 @@ void op_div(stack_t **head, unsigned int line_num)
 void op_mod(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(3, line_num, "mod");
+
 	if ((*head)->n == 0)
-	{
-		fprintf(stderr, "L%d: division by zero\n", line_num);
-		exit(EXIT_FAILURE);
-	}
+		err_mngr(4, line_num, NULL);
+
 	(*head)->next->n = (*head)->next->n % (*head)->n;
 	*head = (*head)->next;
 	free((*head)->prev);
