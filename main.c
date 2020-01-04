@@ -14,14 +14,13 @@ int main(int argc, char *argv[])
 	FILE *fin = fopen(argv[1], "r"); /* Open file to read */
 	char *str = NULL, *opcode_array[2];
 	const char delim[3] = " \t\n";
-	size_t str_len = 0, line_count = 0;
+	size_t str_len = 0, lc = 0;
 
 	if (argc != 2) /* Check if amount of arguments is correct */
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
 	if (fin == NULL) /* If file was able to be opened */
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -30,21 +29,23 @@ int main(int argc, char *argv[])
 
 	while (getline(&str, &str_len, fin) != -1) /*Read each file line */
 	{
-		line_count++;
+		lc++;
 		opcode_array[0] = strtok(str, delim); /* The opcode */
 		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
 		push_tok = opcode_array[1]; /* The extern variable pointer */
-		func = get_opcode_func(opcode_array[0]);
-		if (func == NULL)
+		if (opcode_array[0] != NULL && opcode_array[0][0] != '#')
 		{
-			fprintf(stderr, "L%ld: unknown instruction %s\n", line_count, opcode_array[0]);
-			exit(EXIT_FAILURE);
+			func = get_opcode_func(opcode_array[0]);
+			if (func == NULL)
+			{
+				fprintf(stderr, "L%ld: unknown instruction %s\n", lc, opcode_array[0]);
+				exit(EXIT_FAILURE);
+			else
+				func(&head, lc);
 		}
-		else
-			func(&head, line_count);
 	}
-
 	fclose(fin); /* Close file */
 	free(str);
+	free_stack(head);
 	return (0);
 }
