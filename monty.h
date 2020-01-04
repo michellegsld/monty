@@ -37,12 +37,18 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Extern Variable */
+extern FILE *fin;	/* The pointer to the file to open and read */
+FILE *fin;
+extern char *get_str; /* The pointer within getline */
+char *get_str;
 extern char *push_tok;	/* Contains arg for push */
 char *push_tok;
 extern int sorq;	/* Checks if complete a stack or queue */
 int sorq;
 extern int donot;	/* A flag if the opcode sent in should do nothing */
 int donot;
+extern stack_t *head; /* The pointer to the start of the stack */
+stack_t *head;
 
 /* get_opcode_func.c */
 void (*get_opcode_func(char *op))(stack_t **, unsigned int);
