@@ -82,7 +82,14 @@ void op_swap(stack_t **head, unsigned int line_num)
 	int tmp;
 
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "swap");
+	{
+		free_stack(p_head);
+		free(get_str);
+		fclose(fin);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num, str);
+		exit(EXIT_FAILURE);
+	}
+//		err_mngr(3, line_num, "swap");
 
 	tmp = (*head)->n;
 	(*head)->n = (*head)->next->n;
