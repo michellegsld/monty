@@ -41,7 +41,7 @@ void op_pchar(stack_t **head, unsigned int line_num)
 	if (*head == NULL)
 		err_mngr(15, line_num, NULL);
 
-	if (ch >= 0 && ch <= 127)
+	if (ch > 0 && ch <= 127)
 		putchar(ch);
 	else
 		err_mngr(6, line_num, NULL);
