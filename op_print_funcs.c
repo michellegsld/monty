@@ -36,12 +36,14 @@ void op_pint(stack_t **head, unsigned int line_num)
  */
 void op_pchar(stack_t **head, unsigned int line_num)
 {
-	int ch = (*head)->n;
+	int ch;
 
 	if (*head == NULL)
 		err_mngr(15, line_num, NULL);
 
-	if (ch > 0 && ch <= 127)
+	ch = (*head)->n;
+
+	if (ch >= 0 && ch <= 127)
 		putchar(ch);
 	else
 		err_mngr(6, line_num, NULL);
