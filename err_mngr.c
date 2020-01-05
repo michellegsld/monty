@@ -4,11 +4,15 @@
  * err_mngr_cont - Handles more different kinds of errors within the program
  * @flag: Will determine which error message to display
  * @line_num: Which line number the error was on
+ * @str: Either NULL or the unknown instruction
  */
-void err_mngr_cont(int flag, unsigned int line_num)
+void err_mngr_cont(int flag, unsigned int line_num, char *str)
 {
 	switch (flag)
 	{
+		case(9):
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, str);
+			break;
 		case (10):	/* add fail */
 			fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
 			break;
@@ -40,7 +44,7 @@ void err_mngr_cont(int flag, unsigned int line_num)
  * err_mngr - Handles the different kinds of errors within the program
  * @flag: Will determine which error message to display
  * @line_num: Which line number the error was on
- * @str: Usually the opcode
+ * @str: Either NULL or the file that failed to open
  */
 void err_mngr(int flag, unsigned int line_num, char *str)
 {
@@ -73,12 +77,10 @@ void err_mngr(int flag, unsigned int line_num, char *str)
 			break;
 		case(8): /* File open fail */
 			fprintf(stderr, "Error: Can't open file %s\n", str);
-			break;
-		case(9):
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, str);
+			exit(EXIT_FAILURE);
 			break;
 		default:
-			err_mngr_cont(flag, line_num);
+			err_mngr_cont(flag, line_num, str);
 	}
 	free_stack(p_head);
 	free(get_str);
