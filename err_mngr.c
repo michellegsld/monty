@@ -34,6 +34,7 @@ void err_mngr(int flag, unsigned int line_num, char *str)
 			break;
 		case (7):	/* number of arguments fail */
 			fprintf(stderr, "USAGE: monty file\n");
+			exit(EXIT_FAILURE);
 			break;
 		case(8): /* File open fail */
 			fprintf(stderr, "Error: Can't open file %s\n", str);
