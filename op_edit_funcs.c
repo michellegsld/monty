@@ -8,20 +8,20 @@
 void op_push(stack_t **head, unsigned int line_num)
 {
 	stack_t *current = *head;
-	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *new = NULL;
 	int num;
 	unsigned int i = 0;
 
-	if (push_tok != NULL)
-		num = atoi(push_tok);
 	if (push_tok == NULL)
 		err_mngr(0, line_num, NULL);
 	while (i < strlen(push_tok))
 	{
-		if (!isdigit(push_tok[i]) && (push_tok[0] != '-' && strlen(push_tok) != 1))
+		if (!isdigit(push_tok[i]))
 			err_mngr(0, line_num, NULL);
 		i++;
 	}
+	num = atoi(push_tok);
+	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 		err_mngr(5, line_num, NULL);
 	new->n = num;
