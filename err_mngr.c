@@ -8,7 +8,7 @@
  */
 void err_mngr(int flag, unsigned int line_num, char *str)
 {
-	free_stack(head);
+	free_stack(p_head);
 	switch (flag)
 	{
 		case (0):	/* push fail */
