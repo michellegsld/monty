@@ -1,6 +1,32 @@
 #include "monty.h"
 
 /**
+ * op_push_help - Checks if the argument sent with push is valid
+ * @line_num: The line the error occurred within the file
+ */
+void op_push_help(unsigned int line_num)
+{
+	unsigned int i = 0;
+
+	if (strlen(push_tok) == 1)
+		if (!isdigit(push_tok[0]))
+			err_mngr(0, line_num, NULL);
+
+	if (!isdigit(push_tok[0]) && push_tok[0] != '-')
+		err_mngr(0, line_num, NULL);
+
+	if (!isdigit(push_tok[0] && push_tok[0] == '-'))
+		i++;
+
+	while (i < strlen(push_tok))
+	{
+		if (!isdigit(push_tok[i]))
+			err_mngr(0, line_num, NULL);
+		i++;
+	}
+}
+
+/**
  * op_push - Pushes an element to the stack
  * @head: The top of the stack
  * @line_num: The current line number within the file
@@ -10,16 +36,12 @@ void op_push(stack_t **head, unsigned int line_num)
 	stack_t *current = *head;
 	stack_t *new = NULL;
 	int num;
-	unsigned int i = 0;
 
 	if (push_tok == NULL)
 		err_mngr(0, line_num, NULL);
-	while (i < strlen(push_tok))
-	{
-		if (!isdigit(push_tok[i]))
-			err_mngr(0, line_num, NULL);
-		i++;
-	}
+
+	op_push_help(line_num);
+
 	num = atoi(push_tok);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -82,14 +104,7 @@ void op_swap(stack_t **head, unsigned int line_num)
 	int tmp;
 
 	if (stack_len(*head) < 2)
-	{
-		free_stack(p_head);
-		free(get_str);
-		fclose(fin);
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
-		exit(EXIT_FAILURE);
-	}
-//		err_mngr(3, line_num, "swap");
+		err_mngr(3, line_num, "swap");
 
 	tmp = (*head)->n;
 	(*head)->n = (*head)->next->n;
