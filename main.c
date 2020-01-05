@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
 {
 	void (*func)(stack_t **stack, unsigned int line_number);
 	char *opcode_array[2];
+	stack_t *head = NULL;
 	const char delim[3] = " \t\n";
 	size_t str_len = 0, lc = 0;
 
 	get_str = NULL;
-	head = NULL;
 	sorq = 0;
 	fin = fopen(argv[1], "r"); /* Open file to read */
 
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 			else if (donot == 0)
 				func(&head, lc);
 		}
+		p_head = head;
 	}
 	fclose(fin); /* Close file */
 	free(get_str);
