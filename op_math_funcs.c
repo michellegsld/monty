@@ -8,7 +8,7 @@
 void op_add(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "add");
+		err_mngr(10, line_num);
 
 	(*head)->next->n = ((*head)->next->n) + ((*head)->n);
 	*head = (*head)->next;
@@ -24,7 +24,7 @@ void op_add(stack_t **head, unsigned int line_num)
 void op_sub(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "sub");
+		err_mngr(11, line_num);
 
 	(*head)->next->n = ((*head)->next->n) - ((*head)->n);
 	*head = (*head)->next;
@@ -40,7 +40,7 @@ void op_sub(stack_t **head, unsigned int line_num)
 void op_mul(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "mul");
+		err_mngr(12, line_num);
 
 	(*head)->next->n = ((*head)->next->n) * ((*head)->n);
 	*head = (*head)->next;
@@ -56,10 +56,10 @@ void op_mul(stack_t **head, unsigned int line_num)
 void op_div(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "div");
+		err_mngr(13, line_num);
 
 	if ((*head)->n == 0)
-		err_mngr(4, line_num, NULL);
+		err_mngr(4, line_num);
 
 	(*head)->next->n = ((*head)->next->n) / ((*head)->n);
 	*head = (*head)->next;
@@ -75,7 +75,7 @@ void op_div(stack_t **head, unsigned int line_num)
 void op_mod(stack_t **head, unsigned int line_num)
 {
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num, "mod");
+		err_mngr(14, line_num);
 
 	if ((*head)->n == 0)
 		err_mngr(4, line_num, NULL);
