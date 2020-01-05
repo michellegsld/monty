@@ -16,11 +16,7 @@ void op_push_help(unsigned int line_num)
 		err_mngr(0, line_num, NULL);
 
 	if (!isdigit(push_tok[0] && push_tok[0] == '-'))
-	{
-		if (strlen(push_tok) == 2 && push_tok[1] == '0')
-			err_mngr(0, line_num, NULL);
 		i++;
-	}
 
 	while (i < strlen(push_tok))
 	{
