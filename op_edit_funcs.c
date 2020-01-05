@@ -9,14 +9,14 @@ void op_push_help(unsigned int line_num)
 	unsigned int i = 0;
 
 	if (push_tok == NULL)
-		err_mngr(0, line_num);
+		err_mngr(0, line_num, NULL);
 
 	if (strlen(push_tok) == 1)
 		if (!isdigit(push_tok[0]))
-			err_mngr(0, line_num);
+			err_mngr(0, line_num, NULL);
 
 	if (!isdigit(push_tok[0]) && push_tok[0] != '-')
-		err_mngr(0, line_num);
+		err_mngr(0, line_num, NULL);
 
 	if (!isdigit(push_tok[0] && push_tok[0] == '-'))
 		i++;
@@ -24,7 +24,7 @@ void op_push_help(unsigned int line_num)
 	while (i < strlen(push_tok))
 	{
 		if (!isdigit(push_tok[i]))
-			err_mngr(0, line_num);
+			err_mngr(0, line_num, NULL);
 		i++;
 	}
 }
@@ -45,7 +45,7 @@ void op_push(stack_t **head, unsigned int line_num)
 	num = atoi(push_tok);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		err_mngr(5, line_num);
+		err_mngr(5, line_num, NULL);
 	new->n = num;
 	if (sorq == 0) /* If this is a stack */
 	{
@@ -79,7 +79,7 @@ void op_push(stack_t **head, unsigned int line_num)
 void op_pop(stack_t **head, unsigned int line_num)
 {
 	if (*head == NULL)
-		err_mngr(2, line_num);
+		err_mngr(2, line_num, NULL);
 
 	if ((*head)->next)
 	{
@@ -104,7 +104,7 @@ void op_swap(stack_t **head, unsigned int line_num)
 	int tmp;
 
 	if (stack_len(*head) < 2)
-		err_mngr(3, line_num);
+		err_mngr(3, line_num, NULL);
 
 	tmp = (*head)->n;
 	(*head)->n = (*head)->next->n;
