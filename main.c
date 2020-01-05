@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	while (getline(&get_str, &str_len, fin) != -1) /*Read each file line */
 	{
 		lc++;
+		p_head = head;
 		donot = 0; /* Reset donot variable */
 		opcode_array[0] = strtok(get_str, delim); /* The opcode */
 		opcode_array[1] = strtok(NULL, delim); /* ^ It's possible arg */
@@ -40,10 +41,9 @@ int main(int argc, char *argv[])
 			else if (donot == 0)
 				func(&head, lc);
 		}
-		p_head = head;
 	}
 	fclose(fin); /* Close file */
 	free(get_str);
-	free_stack(head);
+	free_stack(p_head);
 	return (0);
 }
