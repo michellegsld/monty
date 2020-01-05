@@ -8,20 +8,19 @@
  */
 void err_mngr(int flag, unsigned int line_num, char *str)
 {
-	free_stack(p_head);
 	switch (flag)
 	{
 		case (0):	/* push fail */
 			fprintf(stderr, "L%d: usage: push integer\n", line_num);
 			break;
-		case (1):	/* , stack empty fail */
-			fprintf(stderr, "L%d: can't %s, stack empty\n", line_num, str);
+		case (1):	/* pint fail */
+			fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
 			break;
 		case (2):	/* pop fail */
 			fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
 			break;
-		case (3):	/* stack too short fail */
-			fprintf(stderr, "L%d: can't %s, stack too short\n", line_num, str);
+		case (3):	/* swap fail */
+			fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
 			break;
 		case (4):	/* by zero fail */
 			fprintf(stderr, "L%d: division by zero\n", line_num);
@@ -43,8 +42,40 @@ void err_mngr(int flag, unsigned int line_num, char *str)
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, str);
 			break;
 		default:
+			err_mngr_cont(flag, line_num);
+	}
+	free_stack(p_head);
+	free(get_str);
+	fclose(fin);
+	exit(EXIT_FAILURE);
+}
+
+void err_mngr_cont(int flag, unsigned int line_num)
+{
+	switch (flag)
+	{
+		case (10):	/* add fail */
+			fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
+			break;
+		case (11):	/* sub fail */
+			fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
+			break;
+		case (12):	/* mul fail */
+			fprintf(stderr, "L%d: can't mul, stack too short\n", line_num);
+			break;
+		case (13):	/* div fail */
+			fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
+			break;
+		case (14):	/* mod fail */
+			fprintf(stderr, "L%d: can't mod, stack too short\n", line_num);
+			break;
+		case (15):	/* malloc fail */
+			fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
+			break;
+		default:
 			break;
 	}
+	free_stack(p_head);
 	free(get_str);
 	fclose(fin);
 	exit(EXIT_FAILURE);
