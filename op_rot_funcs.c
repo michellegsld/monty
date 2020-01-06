@@ -29,15 +29,22 @@ void op_rotl(stack_t **head, unsigned int __attribute__((unused)) line_num)
 void op_rotr(stack_t **head, unsigned int __attribute__((unused)) line_num)
 {
 	stack_t *current = *head;
+	stack_t *tmp = NULL;
 
 	if (*head && (*head)->next)
 	{
 		while (current->next)
+		{
+			tmp = current;
 			current = current->next;
+		}
 
 		(*head)->prev = current;
 		current->next = *head;
-		current->prev->next = NULL;
+		if (current->prev == *head)
+			(*head)->next = NULL;
+		else
+			tmp->next = NULL;
 		current->prev = NULL;
 		*head = current;
 	}
